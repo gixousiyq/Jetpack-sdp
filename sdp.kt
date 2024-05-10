@@ -8,7 +8,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 object SdpScreenDimensionValues {
-    var smallestWidth : Int = 0
+    var smallestWidth: Int = 0
 }
 
 // Assigns values to the variables above
@@ -33,8 +33,14 @@ fun Int.sdp(): Dp {
     if (SdpScreenDimensionValues.smallestWidth == 0) {
         AssValsToTheSdpObject()
     }
-    val ratio = (ApproximateWidth(SdpScreenDimensionValues.smallestWidth))/300.0
-    val final = this*ratio
+    val ratio = if (SdpScreenDimensionValues.smallestWidth <= 400) {
+        ApproximateWidth(SdpScreenDimensionValues.smallestWidth) / 440.0
+    } else if (SdpScreenDimensionValues.smallestWidth <= 450) {
+        ApproximateWidth(SdpScreenDimensionValues.smallestWidth) / 450.0
+    } else if (smallestWidth <= 550) {
+        ApproximateWidth(SdpScreenDimensionValues.smallestWidth) / 450.0
+    } else ApproximateWidth(SdpScreenDimensionValues.smallestWidth) / 650.0
+    val final = this * ratio
     return final.dp
 }
 
@@ -43,7 +49,13 @@ fun Int.ssp(): TextUnit {
     if (SdpScreenDimensionValues.smallestWidth == 0) {
         AssValsToTheSdpObject()
     }
-    val ratio = (ApproximateWidth(SdpScreenDimensionValues.smallestWidth))/300.0
-    val final = this*ratio
+    val ratio = if (SdpScreenDimensionValues.smallestWidth <= 400) {
+        ApproximateWidth(SdpScreenDimensionValues.smallestWidth) / 500.0
+    } else if (SdpScreenDimensionValues.smallestWidth <= 450) {
+        ApproximateWidth(SdpScreenDimensionValues.smallestWidth) / 450.0
+    } else if (SdpScreenDimensionValues.smallestWidth <= 550) {
+        ApproximateWidth(SdpScreenDimensionValues.smallestWidth) / 500.0
+    } else ApproximateWidth(SdpScreenDimensionValues.smallestWidth) / 650.0
+    val final = this * ratio
     return final.sp
 }
